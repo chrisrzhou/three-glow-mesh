@@ -19,8 +19,8 @@ Import `createGlowMesh` and supply any ThreeJS geometry and a valid options obje
 Here is an example of a common way to create a glow mesh:
 
 ```js
+import { Mesh, Renderer, Scene } from 'three';
 import { createGlowMesh, defaultOptions } from './three-glow-mesh';
-import {Mesh, Renderer, Scene} from 'three';
 
 const originalMesh = new Mesh(...);
 
