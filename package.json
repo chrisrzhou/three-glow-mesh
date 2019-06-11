@@ -1,0 +1,59 @@
+{
+  "name": "three-glow-mesh",
+  "version": "0.1.0",
+  "description": "Create glow mesh with any ThreeJS geometry.",
+  "main": "dist/index.js",
+  "module": "dist/index.module.js",
+  "types": "dist/index.d.ts",
+  "keywords": [
+    "three",
+    "threejs",
+    "mesh",
+    "glow",
+    "geometry"
+  ],
+  "author": "Chris Zhou <christoper.r.zhou@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chrisrzhou/three-glow-mesh.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chrisrzhou/three-glow-mesh/issues"
+  },
+  "homepage": "https://github.com/chrisrzhou/three-glow-mesh",
+  "scripts": {
+    "build": "rollup -c",
+    "clean": "rm -rf dist",
+    "lint": "yarn tsc && eslint --ext .js,.ts --fix src",
+    "prepare": "yarn clean && yarn build",
+    "size": "bundlesize"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.0.0-0",
+    "@babel/preset-typescript": "^7.1.0",
+    "@typescript-eslint/eslint-plugin": "^1.4.2",
+    "@typescript-eslint/parser": "^1.4.2",
+    "bundlesize": "^0.17.0",
+    "eslint": "^5.15.2",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "prettier": "^1.15.3",
+    "rollup": "^1.6.0",
+    "rollup-plugin-babel": "^4.1.0",
+    "rollup-plugin-typescript2": "^0.21.1",
+    "three": "^0.103.0",
+    "tslib": "*",
+    "typescript": "^3.3.3333"
+  },
+  "peerDependencies": {
+    "three": ">= 0.102.0"
+  },
+  "bundlesize": [
+    {
+      "path": "./dist/*.js",
+      "maxSize": "2 kB"
+    }
+  ]
+}
