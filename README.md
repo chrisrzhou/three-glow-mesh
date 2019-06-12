@@ -2,6 +2,8 @@
 
 Create glow mesh with any ThreeJS geometry.
 
+![](./globe-glow.png)
+
 `three-glow-mesh` is based off the awesome work by [stemkoski](https://github.com/stemkoski/stemkoski.github.com/blob/master/Three.js/Shader-Halo.html). The original idea and motivation is laid out by the author in this [link](http://stemkoski.blogspot.com/2013/07/shaders-in-threejs-glow-and-halo.html).
 
 ## Install
@@ -50,12 +52,14 @@ renderer.render(scene, camera);
 
 ## Examples
 
-In the following Codesandbox instances, edit the `geometry` and `options` to experiment with glow effects! You can test various values of `coefficient`, `color`, `power` using [this tool](http://stemkoski.github.io/Three.js/Shader-Glow.html).
+In the following Codesandbox instances, edit the `options` variables to experiment with glow effects! You can test various values of `coefficient`, `color`, `power` using [this tool](http://stemkoski.github.io/Three.js/Shader-Glow.html).
 
 ### Basic Example
 
 [![basic-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/uz1ki)
+![](./basic-glow.png)
 
-### Typescript Example
+### Globe Example
 
-[![typescript-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/263dq)
+[![typescript-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/y6vmj)
+![](./globe-glow.png)
