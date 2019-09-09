@@ -6,6 +6,7 @@ import pkg from './package.json';
 export default [
   {
     input: 'src/index.ts',
+    external: ['three'],
     plugins: [
       typescript({
         clean: true,
