@@ -1,10 +1,12 @@
 {
   "name": "three-glow-mesh",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Create glow mesh with any ThreeJS geometry.",
-  "main": "dist/index.js",
-  "module": "dist/index.module.js",
-  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "homepage": "https://github.com/chrisrzhou/three-glow-mesh",
+  "repository": "chrisrzhou/three-glow-mesh",
+  "bugs": "https://github.com/chrisrzhou/three-glow-mesh/issues",
+  "author": "Chris Zhou <chrisrzhou@pm.me> (https://chrisrzhou.io)",
   "keywords": [
     "three",
     "threejs",
@@ -12,50 +14,42 @@
     "glow",
     "geometry"
   ],
-  "author": "Chris Zhou <chrisrzhou@pm.me>",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/chrisrzhou/three-glow-mesh.git"
-  },
-  "bugs": {
-    "url": "https://github.com/chrisrzhou/three-glow-mesh/issues"
-  },
-  "homepage": "https://github.com/chrisrzhou/three-glow-mesh",
   "scripts": {
-    "build": "rollup -c",
+    "build": "microbundle",
     "clean": "rm -rf dist",
-    "lint": "yarn tsc && eslint --ext .js,.ts --fix src",
-    "prepare": "yarn clean && yarn build",
-    "size": "bundlesize",
-    "unused": "yarn no-unused-export src/*.ts* --exclude src/*.d.ts"
+    "lint": "xo --fix; tsc",
+    "prepare": "npm run clean; npm run build"
   },
+  "main": "dist/index.js",
+  "module": "dist/index.module.js",
+  "source": "index.js",
+  "typings": "types/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "dependencies": {},
   "devDependencies": {
-    "@babel/core": "^7.6.0",
-    "@babel/preset-typescript": "^7.6.0",
-    "@typescript-eslint/eslint-plugin": "^2.1.0",
-    "@typescript-eslint/parser": "^2.1.0",
-    "bundlesize": "^0.18.0",
-    "eslint": "^6.3.0",
-    "eslint-config-prettier": "^6.2.0",
-    "eslint-plugin-prettier": "^3.0.0",
-    "no-unused-export": "^1.9.0",
-    "prettier": "^1.15.3",
-    "rollup": "^1.21.0",
-    "rollup-plugin-babel": "^4.3.3",
-    "rollup-plugin-typescript2": "^0.24.0",
-    "three": "^0.108.0",
-    "tslib": "1.10.0",
-    "typescript": "^3.6.2"
+    "husky": "^4.2.5",
+    "microbundle": "^0.12.3",
+    "three": "^0.118.0",
+    "typescript": "^3.8.3",
+    "xo": "^0.32.1"
   },
   "peerDependencies": {
     "three": ">= 0.102.0"
   },
-  "bundlesize": [
-    {
-      "path": "./dist/*.js",
-      "maxSize": "2 kB"
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run prepare && npm run lint"
     }
-  ]
+  },
+  "prettier": {
+    "bracketSpacing": true,
+    "jsxBracketSameLine": true,
+    "trailingComma": "all",
+    "useTabs": false
+  },
+  "xo": {
+    "prettier": true
+  }
 }

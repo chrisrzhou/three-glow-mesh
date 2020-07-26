@@ -27,27 +27,28 @@ void main() {
 }
 `;
 
+export const defaultOptions = {
+  backside: true,
+  coefficient: 0.5,
+  color: 'gold',
+  size: 2,
+  power: 1,
+};
+
 // Based off: http://stemkoski.blogspot.fr/2013/07/shaders-in-threejs-glow-and-halo.html
-export function createGlowMaterial(
-  coefficient: number,
-  color: string,
-  power: number,
-): THREE.ShaderMaterial {
+export function createGlowMaterial(coefficient, color, power) {
   return new ShaderMaterial({
     depthWrite: false,
     fragmentShader,
     transparent: true,
     uniforms: {
       coefficient: {
-        type: 'f',
         value: coefficient,
       },
       color: {
-        type: 'c',
         value: new Color(color),
       },
       power: {
-        type: 'f',
         value: power,
       },
     },
@@ -55,14 +56,11 @@ export function createGlowMaterial(
   });
 }
 
-export function createGlowGeometry(
-  geometry: THREE.Geometry,
-  size: number,
-): THREE.Geometry {
-  // gather vertexNormals from geometry.faces
+export function createGlowGeometry(geometry, size) {
+  // Gather vertexNormals from geometry.faces
   const glowGeometry = geometry.clone();
   const vertexNormals = new Array(glowGeometry.vertices.length);
-  glowGeometry.faces.forEach((face): void => {
+  glowGeometry.faces.forEach((face) => {
     if (face instanceof Face3) {
       vertexNormals[face.a] = face.vertexNormals[0];
       vertexNormals[face.b] = face.vertexNormals[1];
@@ -71,41 +69,27 @@ export function createGlowGeometry(
       console.error('Face needs to be an instance of THREE.Face3.');
     }
   });
-  // modify the vertices according to vertexNormal
-  glowGeometry.vertices.forEach((vertex, i): void => {
+
+  // Modify the vertices according to vertexNormal
+  glowGeometry.vertices.forEach((vertex, i) => {
     const { x, y, z } = vertexNormals[i];
     vertex.x += x * size;
     vertex.y += y * size;
     vertex.z += z * size;
   });
+
   return glowGeometry;
 }
 
-export interface Options {
-  backside: boolean;
-  coefficient: number;
-  color: string;
-  size: number;
-  power: number;
-}
-
-export const defaultOptions: Options = {
-  backside: true,
-  coefficient: 0.5,
-  color: 'gold',
-  size: 2,
-  power: 1,
-};
-
-export function createGlowMesh(
-  geometry: THREE.Geometry,
-  options: Options = defaultOptions,
-): THREE.Mesh {
+export function createGlowMesh(geometry, options = defaultOptions) {
   const { backside, coefficient, color, size, power } = options;
+
   const glowGeometry = createGlowGeometry(geometry, size);
   const glowMaterial = createGlowMaterial(coefficient, color, power);
+
   if (backside) {
     glowMaterial.side = BackSide;
   }
+
   return new Mesh(glowGeometry, glowMaterial);
 }
