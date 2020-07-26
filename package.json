@@ -25,7 +25,8 @@
   "source": "index.js",
   "typings": "types/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "types/index.d.ts"
   ],
   "dependencies": {},
   "devDependencies": {
